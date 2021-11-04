@@ -24,7 +24,6 @@ def my_list():
     for reservation in response["Reservations"]:
         for instance in reservation["Instances"]:
             for tag in instance["Tags"]:
-                #print(tag)
                 if tag["Key"] == 'Name':
                     my_instancename = ''
                     my_instancename = tag["Value"]
@@ -33,9 +32,6 @@ def my_list():
 parser = argparse.ArgumentParser(description='Action to perform on ec2 instances')
 parser.add_argument('action', choices={"start", "stop", "reboot", "list"}, help='Start,stop, or list EC2 instance(s)')
 parser.add_argument('--instanceid', '-i', help='EC2 instance ID. Required for start or stop actions')
-#parser.add_argument('instance_id', '-i',  help='starts ec2 instance')
-args = parser.parse_args()
-
 my_instance = args.instanceid
 
 if args.action == "start":
